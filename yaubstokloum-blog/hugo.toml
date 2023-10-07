@@ -1,0 +1,68 @@
+baseURL = "https://yaubstokloum-blog.vercel.app/"
+languageCode = "zh-cn"
+title = 'blog'
+enableRobotsTXT = true
+enableEmoji = true
+paginate = 9
+defaultContentLanguage = "zh-cn"
+hasCJKLanguage = true
+disqusShortname = ''
+googleAnalytics = "G-2LX9REEBTP"
+enableGitInfo = true
+[sitemap]
+changefreq = 'weekly'
+priority = 0.5
+filename = 'sitemap.xml'
+[markup.highlight]
+noClasses = true
+codeFences = true
+guessSyntax = false
+lineNoStart = 1
+lineNos = true
+lineNumbersInTable = true
+tabWidth = 4
+anchorLineNos = true
+hl_Lines = ''
+hl_inline = false
+lineAnchors = '' 
+noHl = false
+style = 'friendly'
+[[menu.social]]
+identifier = 'github'
+name = 'GitHub'
+url = "https://github.com/aucub/yaubstokloum-blog"
+[menu.social.params]
+icon = 'brand-github'
+[[module.imports]]
+path = "github.com/CaiJimmy/hugo-theme-stack/v3"
+[Params]
+mainSections = ["post"]
+rssFullContent = true
+description = 'blog'
+favicon = '/favicon.png'
+[Params.Sidebar]
+compact = true
+avatar.enable = false
+avatar.local = false
+[Params.Footer]
+customText = ''
+[Params.Comments]
+enabled = true
+provider = 'giscus'
+[Params.Comments.giscus]
+repo = 'aucub/aucub.github.io'
+repoID = 'R_kgDOGUcwVA'
+category = 'Announcements'
+categoryID = 'DIC_kwDOGUcwVM4CTz4P'
+mapping = 'title'
+lightTheme = 'noborder_light'
+darkTheme = 'noborder_dark'
+reactionsEnabled = 1
+emitMetadata = 0
+lang = 'zh-CN'
+inputPosition = 'top'
+[Params.article]
+math = false
+readingTime = true
+[article.license]
+enabled = false

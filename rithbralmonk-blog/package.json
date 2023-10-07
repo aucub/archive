@@ -1,0 +1,19 @@
+{
+  "name": "rithbralmonk-blog",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.1.0",
+    "@giscus/vue": "^2.3.0",
+    "element-plus": "^2.3.8",
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "sass": "^1.63.6",
+    "typescript": "^5.1.6",
+    "vitepress": "1.0.0-beta.5"
+  }
+}
