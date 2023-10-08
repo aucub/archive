@@ -1,0 +1,23 @@
+{
+  "pathPrefix": "",
+  "allInOne": true,
+  "outPath": "document",
+  "coverOld": true,
+  "packageFilters": "",
+  "style": "xt256",
+  "projectName": "mfs",
+  "framework": "spring",
+  "sortByTitle": false,
+  "showAuthor": false,
+  "allInOneDocFileName": "doc.md",
+  "requestFieldToUnderline": false,
+  "responseFieldToUnderline": false,
+  "inlineEnum": true,
+  "recursionLimit": 7,
+  "requestExample": "false",
+  "responseExample": "false",
+  "requestParamsTable": true,
+  "responseParamsTable": true,
+  "urlSuffix": "",
+  "displayActualType": false
+}

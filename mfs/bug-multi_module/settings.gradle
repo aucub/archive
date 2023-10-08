@@ -1,0 +1,3 @@
+rootProject.name = 'mfs'
+include "admin"
+include "common"

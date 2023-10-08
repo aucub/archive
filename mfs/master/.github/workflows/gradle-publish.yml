@@ -1,0 +1,29 @@
+name: Gradle Package
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: oNaiPs/secrets-to-env-action@v1
+        with:
+          secrets: ${{ toJSON(secrets) }}
+
+      - name: 'Set up latest JDK 20 from jdk.java.net'
+        uses: oracle-actions/setup-java@v1
+        with:
+          website: jdk.java.net
+          release: 20
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2.4.2
+
+      - name: Execute Gradle build
+        run: gradle jib -Djib.to.image=docker.io/$DOCKERHUB_USERNAME/mfs:latest -Djib.from.image=bitnami/java:latest -Djib.to.auth.username=$DOCKERHUB_USERNAME -Djib.to.auth.password=$DOCKERHUB_TOKEN -Djib.container.args=--enable-preview

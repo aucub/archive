@@ -1,0 +1,123 @@
+server:
+  port: 8080
+
+
+logging:
+  level:
+    root: info
+
+spring:
+  main:
+    web-application-type: reactive
+    lazy-initialization: true
+
+  rsocket:
+    server:
+      address: localhost
+      port: 9898
+      # mapping-path: /rsocket/
+      # transport: websocket
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mfs?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+
+  rabbitmq:
+    host: 47.113.201.150
+    port: 5672
+    virtual-host: /mfs
+    username: root
+    password: root
+    listener:
+      direct:
+        retry:
+          enabled: true
+          initial-interval: 500
+          multiplier: 10.0
+          max-interval: 10000
+    cache:
+      channel:
+        size: 1
+        checkout-timeout: 1
+    stream:
+      host: 47.113.201.150
+      port: 5552
+      username: root
+      password: root
+      name: mfs
+
+  data:
+    redis:
+      host: localhost
+      database: 0
+      port: 6379
+      password:
+      timeout: 3000ms
+      lettuce:
+        pool:
+          # 连接池最大连接数
+          max-active: 200
+          # 连接池最大阻塞等待时间（使用负值表示没有限制）
+          max-wait: -1ms
+          # 连接池中的最大空闲连接
+          max-idle: 10
+          # 连接池中的最小空闲连接
+          min-idle: 0
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+  global-config:
+    db-config:
+      #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID"
+      id-type: ASSIGN_UUID
+      logic-delete-field: deleted # 全局逻辑删除的实体字段名
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+      #驼峰下划线转换
+      table-underline: true
+      #是否开启大写命名，默认不开启
+      #capital-mode: true
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: cn.edu.zut.mfs.dao
+  mapper-locations:
+    - classpath:mapper/*.xml
+    - classpath*:com/**/mapper/*.xml
+
+############## Sa-Token 配置 ##############
+sa-token:
+  # token名称 (同时也是cookie名称)
+  token-name: satoken
+  # token有效期，单位s 默认30天, -1代表永不过期
+  timeout: 2592000
+  # token临时有效期 (指定时间内无操作就视为token过期) 单位: 秒
+  activity-timeout: -1
+  # 是否允许同一账号并发登录 (为true时允许一起登录, 为false时新登录挤掉旧登录)
+  is-concurrent: true
+  # 在多人登录同一账号时，是否共用一个token (为true时所有登录共用一个token, 为false时每次登录新建一个token)
+  is-share: true
+  # token风格
+  token-style: uuid
+  # 是否输出操作日志
+  is-log: true
+
+# springdoc-openapi项目配置
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: cn.edu.zut.mfs.controller

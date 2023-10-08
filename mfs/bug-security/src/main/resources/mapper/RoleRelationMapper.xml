@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zut.mfs.dao.RoleRelationDao">
+    <select id="getRoleList" resultType="cn.edu.zut.mfs.domain.Role">
+        select role.*
+        from role_relation
+                 left join role on role_relation.role_id = role.id
+        where role_relation.user_id = #{userId}
+    </select>
+</mapper>
