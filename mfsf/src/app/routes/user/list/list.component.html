@@ -1,0 +1,23 @@
+<nz-card>
+  <button (click)="st.export()" nz-button>Export</button>
+  <button (click)="add()" nz-button nzType="primary">新建</button>
+  <sf (formReset)="st.reset($event)" (formSubmit)="st.reset($event)" [schema]="searchSchema" mode="search"></sf>
+  <a [nzDropdownMenu]="menu" nz-dropdown>
+    角色
+    <span nz-icon nzType="down"></span>
+  </a>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu>
+      <li (click)="selectRole(item.id || '')" *ngFor="let item of roles" nz-menu-item>{{ item.name }}</li>
+    </ul>
+  </nz-dropdown-menu>
+  <st
+    #st
+    (change)="change($event)"
+    [columns]="columns"
+    [data]="url"
+    [req]="{ method: method, reName: reName, allInBody: allInBody, params: params }"
+    [res]="{ reName: resReName }"
+  >
+  </st>
+</nz-card>
